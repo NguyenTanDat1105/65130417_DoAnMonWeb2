@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chỉnh sửa sản phẩm - TechStore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>body { background-color: #f8f9fa; }</style>
+</head>
+<body>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0 p-4">
+                <div class="d-flex align-items-center mb-4">
+                    <a href="/san-pham" class="btn btn-outline-secondary me-3"><i class="fa-solid fa-arrow-left"></i> Hủy bỏ</a>
+                    <h2 class="fw-bold text-warning mb-0">Cập nhật thông tin Laptop</h2>
+                </div>
+                <hr>
+                
+                <form th:action="@{/san-pham/luu}" th:object="${sanPham}" method="POST">
+                    <input type="hidden" th:field="*{maSanPham}">
+                    
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label class="form-label fw-bold">Tên sản phẩm Laptop</label>
+                            <input type="text" th:field="*{tenSanPham}" class="form-control" required>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Thương hiệu / Hãng</label>
+                            <select th:field="*{thuongHieu.maThuongHieu}" class="form-select" required>
+                                <option th:each="th : ${dsThuongHieu}" th:value="${th.maThuongHieu}" th:text="${th.tenThuongHieu}"></option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Phân loại danh mục</label>
+                            <select th:field="*{danhMuc.maDanhMuc}" class="form-select" required>
+                                <option th:each="dm : ${dsDanhMuc}" th:value="${dm.maDanhMuc}" th:text="${dm.tenDanhMuc}"></option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Bộ vi xử lý (CPU)</label>
+                            <input type="text" th:field="*{cpu}" class="form-control">
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Bộ nhớ (RAM)</label>
+                            <input type="text" th:field="*{ram}" class="form-control">
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Dung lượng ổ cứng</label>
+                            <input type="text" th:field="*{oCung}" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Card đồ họa (VGA)</label>
+                            <input type="text" th:field="*{cardDoHoa}" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Màn hình hiển thị</label>
+                            <input type="text" th:field="*{manHinh}" class="form-control">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Giá bán ra (VNĐ)</label>
+                            <input type="number" th:field="*{giaBan}" class="form-control" required>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Số lượng tồn kho</label>
+                            <input type="number" th:field="*{soLuongTon}" class="form-control" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 text-end">
+                        <a href="/san-pham" class="btn btn-light border me-2">Hủy chỉnh sửa</a>
+                        <button type="submit" class="btn btn-warning fw-bold px-4 text-dark"><i class="fa-solid fa-pen-to-square me-2"></i>Cập nhật thông tin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
