@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpSession;
 import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Entity.SanPham;
 import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Repository.DanhMucRepository;
 import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Repository.SanPhamRepository;
-//import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Service.SanPhamService;
 import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Repository.ThuongHieuRepository;
 
 @Controller
@@ -28,11 +27,12 @@ public class SanPhamController {
     @Autowired
     private DanhMucRepository danhMucRepository;
 
-    // 1. TRANG DANH SÁCH SẢN PHẨM
+    // 1. TRANG DANH SÁCH SẢN PHẨM (Cả Quản trị viên và Nhân viên đều được xem)
     @GetMapping("/san-pham")
     public String showSanPhamPage(HttpSession session, ModelMap m) {
         String role = (String) session.getAttribute("role");
-        if (role == null || !role.trim().equals("Quản trị viên")) {
+        // Kiểm tra bảo mật: Nếu chưa đăng nhập hoặc vai trò không phải là Quản trị viên lẫn Nhân viên thì bắt về trang login
+        if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
             return "redirect:/login"; 
         }
 
@@ -41,62 +41,62 @@ public class SanPhamController {
         return "sanpham"; 
     }
 
-    // 2. HIỂN THỊ FORM THÊM MỚI
+    // 2. HIỂN THỊ FORM THÊM MỚI (Cả Quản trị viên và Nhân viên đều được thêm)
     @GetMapping("/san-pham/them")
     public String showThemForm(HttpSession session, ModelMap m) {
         String role = (String) session.getAttribute("role");
-        if (role == null || !role.trim().equals("Quản trị viên")) {
+        if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
             return "redirect:/login";
         }
 
-        m.addAttribute("sanPham", new SanPham()); // Đối tượng rỗng để binding vào form
-        m.addAttribute("dsThuongHieu", thuongHieuRepository.findAll()); // Lấy danh sách Hãng để chọn
-        m.addAttribute("dsDanhMuc", danhMucRepository.findAll());       // Lấy danh sách Danh mục để chọn
-        return "them-sanpham"; // Sẽ tạo file này ở Bước 3
+        m.addAttribute("sanPham", new SanPham()); 
+        m.addAttribute("dsThuongHieu", thuongHieuRepository.findAll()); 
+        m.addAttribute("dsDanhMuc", danhMucRepository.findAll());       
+        return "them-sanpham"; 
     }
 
-    // 3. HIỂN THỊ FORM SỬA SẢN PHẨM
+    // 3. HIỂN THỊ FORM SỬA SẢN PHẨM (Cả Quản trị viên và Nhân viên đều được sửa)
     @GetMapping("/san-pham/sua/{id}")
     public String showSuaForm(@PathVariable("id") Integer id, HttpSession session, ModelMap m) {
         String role = (String) session.getAttribute("role");
-        if (role == null || !role.trim().equals("Quản trị viên")) {
+        if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
             return "redirect:/login";
         }
 
         SanPham sp = sanPhamRepository.findById(id).orElse(null);
         if (sp == null) {
-            return "redirect:/san-pham"; // Nếu không tìm thấy ID, quay về danh sách
+            return "redirect:/san-pham"; 
         }
 
-        m.addAttribute("sanPham", sp); // Đổ dữ liệu cũ của sản phẩm ra form
+        m.addAttribute("sanPham", sp); 
         m.addAttribute("dsThuongHieu", thuongHieuRepository.findAll());
         m.addAttribute("dsDanhMuc", danhMucRepository.findAll());
-        return "sua-sanpham"; // Sẽ tạo file này ở Bước 3
+        return "sua-sanpham"; 
     }
 
-    // 4. XỬ LÝ LƯU DỮ LIỆU (Dùng chung cho cả THÊM và SỬA)
+    // 4. XỬ LÝ LƯU DỮ LIỆU THÊM/SỬA (Cả Quản trị viên và Nhân viên đều thực hiện được)
     @PostMapping("/san-pham/luu")
     public String saveSanPham(SanPham sanPham, HttpSession session) {
         String role = (String) session.getAttribute("role");
-        if (role == null || !role.trim().equals("Quản trị viên")) {
+        if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
             return "redirect:/login";
         }
 
-        // JPA tự động phân biệt: Nếu đối tượng có maSanPham trùng trong DB -> thực hiện UPDATE
-        // Nếu maSanPham là null hoặc chưa từng tồn tại -> thực hiện INSERT mới
         sanPhamRepository.save(sanPham); 
-        return "redirect:/san-pham"; // Lưu xong quay về trang danh sách
+        return "redirect:/san-pham"; 
     }
 
-    // 5. XỬ LÝ XÓA SẢN PHẨM
+    // 5. XỬ LÝ XÓA SẢN PHẨM (Bảo mật: CHỈ duy nhất Quản trị viên được xóa)
     @GetMapping("/san-pham/xoa/{id}")
     public String deleteSanPham(@PathVariable("id") Integer id, HttpSession session) {
         String role = (String) session.getAttribute("role");
+        // Nếu không phải là Quản trị viên (Ví dụ: Nhân viên cố tình gõ URL xóa trên trình duyệt) 
+        // Hệ thống sẽ từ chối xử lý và đá ngược về trang danh sách sản phẩm
         if (role == null || !role.trim().equals("Quản trị viên")) {
-            return "redirect:/login";
+            return "redirect:/san-pham"; 
         }
 
         sanPhamRepository.deleteById(id);
-        return "redirect:/san-pham"; // Xóa xong quay lại danh sách
+        return "redirect:/san-pham"; 
     }
 }

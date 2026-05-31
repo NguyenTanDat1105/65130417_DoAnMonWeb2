@@ -54,14 +54,16 @@
         
         <div class="row g-3">
         
-            <div th:if="${session.role != null && #strings.contains(session.role, 'Quản trị')}" class="col-md-4">
-                <div class="card bg-success text-white p-4 h-100 shadow-sm text-center">
-                    <i class="fa-solid fa-boxes-stacked fa-3x mb-3"></i>
-                    <h4>Quản lý sản phẩm & kho</h4>
-                    <p class="small opacity-75">Thêm, sửa, xóa sản phẩm laptop và danh mục sản phẩm.</p>
-                    <a th:href="@{/san-pham}" class="btn btn-light btn-sm mt-auto fw-bold">Vào quản lý</a>
-                </div>
-            </div>
+            <div th:if="${session.role != null && (#strings.contains(session.role, 'Quản trị') || #strings.contains(session.role, 'Nhân viên'))}" class="col-md-4">
+			    <div class="card bg-success text-white p-4 h-100 shadow-sm text-center">
+			        <i class="fa-solid fa-boxes-stacked fa-3x mb-3"></i>
+			        <h4 class="fw-bold">Quản lý sản phẩm & kho</h4>
+			        <p class="small opacity-75">Thêm, sửa, xóa sản phẩm laptop và danh mục sản phẩm.</p>
+			        <a th:href="@{/san-pham}" class="btn btn-light btn-sm mt-auto fw-bold text-success">
+			            Vào quản lý
+			        </a>
+			    </div>
+			</div>
 
             <div class="col-md-4">
                 <div class="card bg-primary text-white p-4 h-100 shadow-sm text-center">
@@ -73,13 +75,13 @@
             </div>
 
             <div th:if="${session.role != null && #strings.contains(session.role, 'Quản trị')}" class="col-md-4">
-                <div class="card bg-warning text-dark p-4 h-100 shadow-sm text-center">
-                    <i class="fa-solid fa-users-gear fa-3x mb-3"></i>
-                    <h4 class="fw-bold">Quản lý nhân viên</h4>
-                    <p class="small text-muted">Quản lý tài khoản nội bộ của cửa hàng.</p>
-                    <button class="btn btn-dark btn-sm mt-auto fw-bold">Vào quản lý</button>
-                </div>
-            </div>
+			    <div class="card bg-warning text-dark p-4 h-100 shadow-sm text-center">
+			        <i class="fa-solid fa-users-gear fa-3x mb-3"></i>
+			        <h4 class="fw-bold">Quản lý nhân viên</h4>
+			        <p class="small text-muted">Quản lý tài khoản nội bộ của cửa hàng.</p>
+			        <a th:href="@{/nhan-vien}" class="btn btn-dark btn-sm mt-auto fw-bold">Vào quản lý</a>
+			    </div>
+			</div>
             
         </div> </div> </div> </body>
 </html>
