@@ -25,7 +25,7 @@ public class DonHang {
 
     @ManyToOne
     @JoinColumn(name = "MaTaiKhoan", nullable = false)
-    private TaiKhoan taiKhoan; // Người thực hiện lập hóa đơn xuất kho
+    private TaiKhoan taiKhoan;
 
     @Column(name = "TenKhachHang", length = 100)
     private String tenKhachHang;

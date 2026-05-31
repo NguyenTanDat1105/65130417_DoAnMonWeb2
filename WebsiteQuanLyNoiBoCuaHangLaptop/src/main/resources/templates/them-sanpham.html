@@ -27,7 +27,7 @@
                         
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Thương hiệu / Hãng</label>
-                            <select th:field="*{thuongHieu.maThuongHieu}" class="form-select" required>
+                            <select name="maThuongHieu" class="form-select" required>
                                 <option value="" disabled selected>-- Chọn hãng sản xuất --</option>
                                 <option th:each="th : ${dsThuongHieu}" th:value="${th.maThuongHieu}" th:text="${th.tenThuongHieu}"></option>
                             </select>
@@ -35,7 +35,7 @@
                         
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Phân loại danh mục</label>
-                            <select th:field="*{danhMuc.maDanhMuc}" class="form-select" required>
+                            <select name="maDanhMuc" class="form-select" required>
                                 <option value="" disabled selected>-- Chọn phân loại máy --</option>
                                 <option th:each="dm : ${dsDanhMuc}" th:value="${dm.maDanhMuc}" th:text="${dm.tenDanhMuc}"></option>
                             </select>
@@ -66,12 +66,17 @@
                             <input type="text" th:field="*{manHinh}" class="form-control" placeholder="15.6 inch FHD 144Hz">
                         </div>
                         
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Giá bán ra (VNĐ)</label>
-                            <input type="number" th:field="*{giaBan}" class="form-control" required placeholder="Nhập số tiền liền nhau, ví dụ: 15000000">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Giá nhập vào (VNĐ)</label>
+                            <input type="number" th:field="*{giaNhap}" class="form-control" required placeholder="Ví dụ: 12000000">
                         </div>
                         
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Giá bán ra (VNĐ)</label>
+                            <input type="number" th:field="*{giaBan}" class="form-control" required placeholder="Ví dụ: 15000000">
+                        </div>
+                        
+                        <div class="col-md-4">
                             <label class="form-label fw-bold">Số lượng nhập kho ban đầu</label>
                             <input type="number" th:field="*{soLuongTon}" class="form-control" required placeholder="Ví dụ: 10">
                         </div>

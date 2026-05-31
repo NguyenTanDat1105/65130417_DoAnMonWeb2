@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ChiTietDonHang")
-@IdClass(ChiTietDonHangId.class) // Gọi lớp khóa chính phức hợp vừa tạo ở trên
+@IdClass(ChiTietDonHangId.class)
 public class ChiTietDonHang {
 
     @Id

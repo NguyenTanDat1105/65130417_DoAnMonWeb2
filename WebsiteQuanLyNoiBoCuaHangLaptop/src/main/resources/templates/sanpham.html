@@ -45,8 +45,8 @@
                     <a class="nav-link" href="#"><i class="fa-solid fa-file-invoice-dollar me-2"></i> Hóa đơn & Bán hàng</a>
                 </li>
                 <li class="nav-item" th:if="${session.role != null && #strings.contains(session.role, 'Quản trị')}">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-users-gear me-2"></i> Quản lý nhân viên</a>
-                </li>
+				    <a class="nav-link" th:href="@{/nhan-vien}"><i class="fa-solid fa-users-gear me-2"></i> Quản lý nhân viên</a>
+				</li>
             </ul>
         </div>
 
@@ -101,13 +101,15 @@
                                         <small th:text="'CPU: ' + ${sp.cpu} + ' | RAM: ' + ${sp.ram} + ' | Ổ cứng: ' + ${sp.oCung}"></small>
                                     </td>
                                     <td class="text-center text-nowrap pe-3">
+									    <a th:href="@{/san-pham/chi-tiet/{id}(id=${sp.maSanPham})}" class="btn btn-info btn-sm me-1 text-white">
+									        <i class="fa-solid fa-eye"></i> Xem
+									    </a>
+									    
 									    <a th:href="@{/san-pham/sua/{id}(id=${sp.maSanPham})}" class="btn btn-warning btn-sm me-1">
 									        <i class="fa-solid fa-pen-to-square"></i> Sửa
 									    </a>
 									    
-									    <a th:if="${session.role != null && #strings.contains(session.role, 'Quản trị')}" 
-									       th:href="@{/san-pham/xoa/{id}(id=${sp.maSanPham})}" 
-									       class="btn btn-danger btn-sm"
+									    <a th:href="@{/san-pham/xoa/{id}(id=${sp.maSanPham})}" class="btn btn-danger btn-sm"
 									       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">
 									        <i class="fa-solid fa-trash"></i> Xóa
 									    </a>

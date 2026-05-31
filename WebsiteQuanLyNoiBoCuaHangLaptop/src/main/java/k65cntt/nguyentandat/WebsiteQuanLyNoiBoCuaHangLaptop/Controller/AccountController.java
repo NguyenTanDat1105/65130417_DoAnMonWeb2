@@ -128,18 +128,12 @@ public class AccountController {
         
         // --- ĐOẠN ĐÃ SỬA ĐỂ TRÁNH LỖI BIẾN TRẠNG THÁI ---
         if (taiKhoan.getMaTaiKhoan() == null) {
-            // Trường hợp THÊM MỚI: Tự động kích hoạt tài khoản
-            // Nếu phương thức trong Entity của bạn là kiểu Boolean, hãy dùng dòng dưới đây:
             taiKhoan.setTrangThai(true); 
             
-            // LƯU Ý: Nếu sau khi đổi thành true mà vẫn báo đỏ, hãy kiểm tra file TaiKhoan.java 
-            // xem bạn đặt tên hàm là gì (ví dụ: setStatus(true) hoặc setKichHoat(true)) và sửa lại từ này cho khớp.
         } else {
-            // Trường hợp CHỈNH SỬA: Giữ nguyên trạng thái cũ từ cơ sở dữ liệu
             TaiKhoan taiKhoanCu = taiKhoanRepository.findById(taiKhoan.getMaTaiKhoan()).orElse(null);
             if (taiKhoanCu != null) {
                 taiKhoan.setTrangThai(taiKhoanCu.getTrangThai());
-                // (Nếu đổi tên hàm ở trên thì ở đây cũng đổi tương ứng thành .setStatus(taiKhoanCu.getStatus()))
             }
         }
         // ------------------------------------------

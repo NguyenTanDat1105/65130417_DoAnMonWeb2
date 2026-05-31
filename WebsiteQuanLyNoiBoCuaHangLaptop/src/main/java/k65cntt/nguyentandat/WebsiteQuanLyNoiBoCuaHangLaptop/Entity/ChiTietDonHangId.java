@@ -14,7 +14,6 @@ public class ChiTietDonHangId implements Serializable {
         this.maSanPham = maSanPham;
     }
 
-    // Bắt buộc phải triển khai equals và hashCode cho khóa phức hợp
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -28,7 +27,6 @@ public class ChiTietDonHangId implements Serializable {
         return Objects.hash(maDonHang, maSanPham);
     }
 
-    // Getter và Setter
     public Integer getMaDonHang() { return maDonHang; }
     public void setMaDonHang(Integer maDonHang) { this.maDonHang = maDonHang; }
 

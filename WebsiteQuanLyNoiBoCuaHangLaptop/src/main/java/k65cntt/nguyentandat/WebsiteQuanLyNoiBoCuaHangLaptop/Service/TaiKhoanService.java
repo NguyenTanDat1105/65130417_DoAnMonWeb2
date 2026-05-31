@@ -32,7 +32,6 @@ public class TaiKhoanService {
             // So sánh mật khẩu bằng .equals()
             if (tk.getMatKhau().equals(matKhau)) {
                 
-                // Dùng Boolean.TRUE.equals() để an toàn tuyệt đối, tránh lỗi NullPointerException
                 if (Boolean.TRUE.equals(tk.getTrangThai())) {
                     System.out.println("=> KẾT LUẬN: ĐĂNG NHẬP THÀNH CÔNG!");
                     return tk;

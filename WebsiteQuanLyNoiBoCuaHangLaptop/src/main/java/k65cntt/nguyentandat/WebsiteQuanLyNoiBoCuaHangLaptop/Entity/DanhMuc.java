@@ -19,16 +19,13 @@ public class DanhMuc {
     @Column(name = "TenDanhMuc", nullable = false, unique = true, length = 100)
     private String tenDanhMuc;
 
-    // Constructor không tham số
     public DanhMuc() {}
 
-    // Constructor có tham số
     public DanhMuc(Integer maDanhMuc, String tenDanhMuc) {
         this.maDanhMuc = maDanhMuc;
         this.tenDanhMuc = tenDanhMuc;
     }
 
-    // Getter và Setter
     public Integer getMaDanhMuc() {
         return maDanhMuc;
     }

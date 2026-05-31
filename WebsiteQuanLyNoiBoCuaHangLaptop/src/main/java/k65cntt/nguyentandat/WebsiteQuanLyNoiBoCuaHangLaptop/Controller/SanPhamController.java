@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import k65cntt.nguyentandat.WebsiteQuanLyNoiBoCuaHangLaptop.Entity.SanPham;
@@ -31,7 +32,6 @@ public class SanPhamController {
     @GetMapping("/san-pham")
     public String showSanPhamPage(HttpSession session, ModelMap m) {
         String role = (String) session.getAttribute("role");
-        // Kiểm tra bảo mật: Nếu chưa đăng nhập hoặc vai trò không phải là Quản trị viên lẫn Nhân viên thì bắt về trang login
         if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
             return "redirect:/login"; 
         }
@@ -74,29 +74,59 @@ public class SanPhamController {
         return "sua-sanpham"; 
     }
 
-    // 4. XỬ LÝ LƯU DỮ LIỆU THÊM/SỬA (Cả Quản trị viên và Nhân viên đều thực hiện được)
+    // 4. XỬ LÝ LƯU DỮ LIỆU (Dùng chung cho cả THÊM và SỬA)
     @PostMapping("/san-pham/luu")
-    public String saveSanPham(SanPham sanPham, HttpSession session) {
+    public String saveSanPham(SanPham sanPham, 
+                              @RequestParam("maThuongHieu") Integer maThuongHieu,
+                              @RequestParam("maDanhMuc") Integer maDanhMuc,
+                              HttpSession session) {
         String role = (String) session.getAttribute("role");
-        if (role == null || (!role.trim().equals("Quản trị viên") && !role.trim().equals("Nhân viên"))) {
+        if (role == null || !role.trim().equals("Quản trị viên")) {
             return "redirect:/login";
         }
 
+        if (maThuongHieu != null) {
+            sanPham.setThuongHieu(thuongHieuRepository.findById(maThuongHieu).orElse(null));
+        }
+        if (maDanhMuc != null) {
+            sanPham.setDanhMuc(danhMucRepository.findById(maDanhMuc).orElse(null));
+        }
+
+        if (sanPham.getGiaNhap() == null) {
+            sanPham.setGiaNhap(sanPham.getGiaBan() != null ? sanPham.getGiaBan() : java.math.BigDecimal.ZERO);
+        }
+
         sanPhamRepository.save(sanPham); 
-        return "redirect:/san-pham"; 
+        return "redirect:/san-pham"; // Lưu xong quay về trang danh sách
     }
 
     // 5. XỬ LÝ XÓA SẢN PHẨM (Bảo mật: CHỈ duy nhất Quản trị viên được xóa)
     @GetMapping("/san-pham/xoa/{id}")
     public String deleteSanPham(@PathVariable("id") Integer id, HttpSession session) {
         String role = (String) session.getAttribute("role");
-        // Nếu không phải là Quản trị viên (Ví dụ: Nhân viên cố tình gõ URL xóa trên trình duyệt) 
-        // Hệ thống sẽ từ chối xử lý và đá ngược về trang danh sách sản phẩm
         if (role == null || !role.trim().equals("Quản trị viên")) {
             return "redirect:/san-pham"; 
         }
 
         sanPhamRepository.deleteById(id);
         return "redirect:/san-pham"; 
+    }
+ // 6. HIỂN THỊ CHI TIẾT SẢN PHẨM
+    @GetMapping("/san-pham/chi-tiet/{id}")
+    public String showChiTietSanPham(@PathVariable("id") Integer id, HttpSession session, ModelMap m) {
+        // Kiểm tra xem nhân viên/admin đã đăng nhập chưa
+        if (session.getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+        
+        // Tìm sản phẩm trong DB bằng ID
+        SanPham sp = sanPhamRepository.findById(id).orElse(null);
+        if (sp == null) {
+            return "redirect:/san-pham"; // Nếu không tìm thấy, quay ngược lại trang danh sách
+        }
+        
+        // Đưa đối tượng sản phẩm ra ngoài giao diện chi tiết
+        m.addAttribute("sanPham", sp);
+        return "chi-tiet-sanpham";
     }
 }

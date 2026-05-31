@@ -31,7 +31,7 @@ public class TaiKhoan {
     private String soDienThoai;
 
     @Column(name = "VaiTro", nullable = false)
-    private String vaiTro; // "Quản trị viên" hoặc "Nhân viên"
+    private String vaiTro; 
 
     @Column(name = "TrangThai")
     private Boolean trangThai;
