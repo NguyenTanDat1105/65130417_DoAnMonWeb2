@@ -39,16 +39,16 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
 *(Lưu ý: Bạn hãy chụp ảnh màn hình dự án thật của bạn và lưu vào thư mục `images/` hoặc `static/images/` để hiển thị ở đây)*
 
 * **Trang Đăng nhập bảo mật:**
-    ![Giao diện Đăng nhập](src/main/resources/static/images/login-screen.png)
+    ![Giao diện Đăng nhập](images/login-screen.png)
 * **Trang Bảng điều khiển (Dashboard):**
-    ![Bảng điều khiển](src/main/resources/static/images/dashboard.png)
+    ![Bảng điều khiển](/images/dashboard.png)
 * **Quản lý danh sách Laptop:**
-    ![Danh sách sản phẩm](src/main/resources/static/images/product-list.png)
+    ![Danh sách sản phẩm](images/product-list.png)
 * **Form Cập nhật / Thêm sản phẩm:**
-    ![Thêm sản phẩm](src/main/resources/static/images/product-form1.png)
-    ![Sửa sản phẩm](src/main/resources/static/images/product-form2.png)
+    ![Thêm sản phẩm](images/product-form1.png)
+    ![Sửa sản phẩm](images/product-form2.png)
 * **Quản lý danh sách Nhân viên nội bộ:**
-    ![Quản lý nhân viên](src/main/resources/static/images/employee-list.png)
+    ![Quản lý nhân viên](images/employee-list.png)
 
 ---
 
