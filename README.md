@@ -22,9 +22,8 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
     * `Quản trị viên (Admin)`: Nắm toàn quyền hệ thống. Được phép thao tác Thêm/Sửa/Xóa mọi dữ liệu, và quản lý cấp phát tài khoản cho nhân viên.
     * `Nhân viên (Employee)`: Chỉ được phép xem danh sách, Thêm mới và Sửa thông tin sản phẩm (Nút "Xóa" bị khóa hoàn toàn). Không có quyền truy cập vào khu vực quản lý nhân sự.
 
-* **📦 Quản lý Sản phẩm & Kho (Product Management):** * Quản lý danh mục, hãng sản xuất (Thương hiệu).
+* **📦 Quản lý Sản phẩm & Kho (Product Management):**
     * Thêm, sửa, xóa sản phẩm laptop với bộ thông số kỹ thuật chi tiết (CPU, RAM, Ổ cứng, VGA, Màn hình...).
-    * Upload hình ảnh sản phẩm trực tiếp từ máy tính.
     * Quản lý số lượng tồn kho, giá nhập vào và giá bán ra.
     * Xem chi tiết sản phẩm với giao diện thẻ (Card) trực quan.
 
