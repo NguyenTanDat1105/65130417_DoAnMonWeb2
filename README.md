@@ -44,8 +44,9 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
     ![Bảng điều khiển](src/main/resources/static/images/dashboard.png)
 * **Quản lý danh sách Laptop:**
     ![Danh sách sản phẩm](src/main/resources/static/images/product-list.png)
-* **Form Cập nhật / Thêm sản phẩm & Hình ảnh:**
-    ![Thêm sản phẩm](src/main/resources/static/images/product-form.png)
+* **Form Cập nhật / Thêm sản phẩm:**
+    ![Thêm sản phẩm](src/main/resources/static/images/product-form1.png)
+    ![Sửa sản phẩm](src/main/resources/static/images/product-form2.png)
 * **Quản lý danh sách Nhân viên nội bộ:**
     ![Quản lý nhân viên](src/main/resources/static/images/employee-list.png)
 
