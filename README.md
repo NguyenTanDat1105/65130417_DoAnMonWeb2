@@ -7,11 +7,10 @@
 
 ## 2. Công nghệ sử dụng
 Dự án được phát triển dựa trên nền tảng Java Full-Stack kết hợp các công nghệ hiện đại nhất:
-* **Backend:** Java, Spring Boot 3.x.
+* **Backend:** Java 21, Spring Boot 4.0.6.
 * **Database:** MySQL / Spring Data JPA (Quản lý thực thể và truy vấn cơ sở dữ liệu).
 * **Frontend:** HTML5, CSS3, Thymeleaf (View Engine của Spring), Bootstrap 5 (Responsive UI), FontAwesome 6 (Icons).
 * **Quản lý phiên (Session):** Tích hợp phân quyền bảo mật qua `HttpSession`.
-* **Quản lý file:** Upload và lưu trữ hình ảnh vật lý trực tiếp trên server.
 
 ---
 
@@ -25,7 +24,7 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
 * **📦 Quản lý Sản phẩm & Kho (Product Management):**
     * Thêm, sửa, xóa sản phẩm laptop với bộ thông số kỹ thuật chi tiết (CPU, RAM, Ổ cứng, VGA, Màn hình...).
     * Quản lý số lượng tồn kho, giá nhập vào và giá bán ra.
-    * Xem chi tiết sản phẩm với giao diện thẻ (Card) trực quan.
+    * Xem chi tiết sản phẩm với giao diện thẻ trực quan.
 
 * **👥 Quản lý Nhân sự (Employee Management - Only Admin):**
     * Thêm mới tài khoản nhân viên vào hệ thống (tự động kích hoạt trạng thái).
