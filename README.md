@@ -35,7 +35,6 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
 ---
 
 ## 4. Hình ảnh giao diện hệ thống
-*(Lưu ý: Bạn hãy chụp ảnh màn hình dự án thật của bạn và lưu vào thư mục `images/` hoặc `static/images/` để hiển thị ở đây)*
 
 * **Trang Đăng nhập bảo mật:**
     ![Giao diện Đăng nhập](images/login-screen.png)
