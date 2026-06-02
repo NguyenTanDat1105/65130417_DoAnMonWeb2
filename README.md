@@ -7,11 +7,10 @@
 
 ## 2. Công nghệ sử dụng
 Dự án được phát triển dựa trên nền tảng Java Full-Stack kết hợp các công nghệ hiện đại nhất:
-* **Backend:** Java, Spring Boot 3.x.
+* **Backend:** Java 21, Spring Boot 4.0.6.
 * **Database:** MySQL / Spring Data JPA (Quản lý thực thể và truy vấn cơ sở dữ liệu).
 * **Frontend:** HTML5, CSS3, Thymeleaf (View Engine của Spring), Bootstrap 5 (Responsive UI), FontAwesome 6 (Icons).
 * **Quản lý phiên (Session):** Tích hợp phân quyền bảo mật qua `HttpSession`.
-* **Quản lý file:** Upload và lưu trữ hình ảnh vật lý trực tiếp trên server.
 
 ---
 
@@ -22,11 +21,10 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
     * `Quản trị viên (Admin)`: Nắm toàn quyền hệ thống. Được phép thao tác Thêm/Sửa/Xóa mọi dữ liệu, và quản lý cấp phát tài khoản cho nhân viên.
     * `Nhân viên (Employee)`: Chỉ được phép xem danh sách, Thêm mới và Sửa thông tin sản phẩm (Nút "Xóa" bị khóa hoàn toàn). Không có quyền truy cập vào khu vực quản lý nhân sự.
 
-* **📦 Quản lý Sản phẩm & Kho (Product Management):** * Quản lý danh mục, hãng sản xuất (Thương hiệu).
+* **📦 Quản lý Sản phẩm & Kho (Product Management):**
     * Thêm, sửa, xóa sản phẩm laptop với bộ thông số kỹ thuật chi tiết (CPU, RAM, Ổ cứng, VGA, Màn hình...).
-    * Upload hình ảnh sản phẩm trực tiếp từ máy tính.
     * Quản lý số lượng tồn kho, giá nhập vào và giá bán ra.
-    * Xem chi tiết sản phẩm với giao diện thẻ (Card) trực quan.
+    * Xem chi tiết sản phẩm với giao diện thẻ trực quan.
 
 * **👥 Quản lý Nhân sự (Employee Management - Only Admin):**
     * Thêm mới tài khoản nhân viên vào hệ thống (tự động kích hoạt trạng thái).
@@ -36,7 +34,6 @@ Hệ thống được chia làm 2 vai trò cốt lõi với quyền hạn khác 
 ---
 
 ## 4. Hình ảnh giao diện hệ thống
-*(Lưu ý: Bạn hãy chụp ảnh màn hình dự án thật của bạn và lưu vào thư mục `images/` hoặc `static/images/` để hiển thị ở đây)*
 
 * **Trang Đăng nhập bảo mật:**
     ![Giao diện Đăng nhập](images/login-screen.png)
