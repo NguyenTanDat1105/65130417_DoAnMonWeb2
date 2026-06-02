@@ -1,6 +1,7 @@
 # 💻 Website Quản Lý Nội Bộ Cửa Hàng Laptop (TechStore)
-## Link demo dự án :
-[![Xem Video Hướng Dẫn](images/login-screen.png)](https://drive.google.com/file/d/1DvRrO9rTW32hcVg4-xMwk8b6e-aNbnkl/view?usp=sharing)
+## Link demo dự án : 
+👉 [Bấm vào đây để xem video demo dự án]<https://drive.google.com/file/d/1DvRrO9rTW32hcVg4-xMwk8b6e-aNbnkl/view?usp=sharing>
+
 ## 1. Mô tả ứng dụng
 **TechStore Admin** là hệ thống phần mềm quản trị nội bộ được thiết kế chuyên biệt dành cho các cửa hàng kinh doanh máy tính/laptop. Ứng dụng giúp chủ cửa hàng và nhân viên dễ dàng quản lý kho hàng, theo dõi chi tiết cấu hình thông số kỹ thuật của từng mẫu laptop, kiểm soát giá bán - giá nhập, và đặc biệt là hệ thống phân quyền quản lý tài khoản nhân viên chặt chẽ, bảo mật.
 
